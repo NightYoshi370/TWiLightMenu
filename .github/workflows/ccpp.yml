@@ -44,6 +44,7 @@ jobs:
         rm -r TWiLightMenu/_nds/TWiLightMenu/widescreen/
         rm -r TWiLightMenu/_nds/TWiLightMenu/apfix/
         7z a TWiLightMenu-Lite.7z TWiLightMenu/
+        ls
     - name: Commit to TWLBot/Builds/
       if: success() # it worked yay
       run: |
@@ -55,10 +56,10 @@ jobs:
         git clone --depth 1 https://${{ secrets.BOT_TOKEN }}@github.com/TWLBot/overflow-builds.git
         cd overflow-builds/
         cp ../TWiLightMenu.7z TWiLightMenu.7z
+        ls
         git stage .
         git commit -m "TWiLightMenu | $COMMIT_TAG"
         git push origin master
-        ls
 #        curl -o send.sh https://raw.githubusercontent.com/Universal-Team/discord-webhooks/master/send-ghactions.sh
 #        sudo chmod +x send.sh
 #        ./send.sh success ${{ secrets.WEBHOOK_URL }}
