@@ -45,7 +45,7 @@ jobs:
         rm -r TWiLightMenu/_nds/TWiLightMenu/apfix/
         7z a TWiLightMenu-Lite.7z TWiLightMenu/
         ls
-    - name: Commit to TWLBot/Builds/
+    - name: Commit to TWLBot/overflow-builds
       if: success() # it worked yay
       run: |
         export COMMIT_TAG="$(git log --format=%h -1)"
