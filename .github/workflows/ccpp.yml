@@ -12,7 +12,6 @@ jobs:
       run: |
         curl -L https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb -o pacman.deb
         sudo apt update
-        sudo apt install p7zip-full haveged
         sudo dpkg -i pacman.deb
         sudo dkp-pacman -Sy
         sudo dkp-pacman -S nds-dev --noconfirm
@@ -37,17 +36,15 @@ jobs:
     - name: Package files
       run: |
         rm -r 7zfile/_nds/TWiLightMenu/*menu/
-        mv 7zfile/ TWiLightMenu/
-        7z a TWiLightMenu.7z TWiLightMenu/
-        rm -r TWiLightMenu/_nds/TWiLightMenu/widescreen/
-        rm -r TWiLightMenu/_nds/TWiLightMenu/apfix/
-        7z a TWiLightMenu-Lite.7z TWiLightMenu/
+        cp 7zfile/ TWiLightMenu-Lite/
+        rm -r TWiLightMenu-Lite/_nds/TWiLightMenu/widescreen/
+        rm -r TWiLightMenu-Lite/_nds/TWiLightMenu/apfix/
     - name: Upload artifacts to Github (Full TWiLight)
       if: success()
       uses: actions/upload-artifact@master
       with:
         name: TWiLightMenu-${{ github.sha }}
-        path: TWiLightMenu/
+        path: 7zfile/
     - name: Upload artifacts to Github (TWiLight Lite)
       if: success()
       uses: actions/upload-artifact@master
